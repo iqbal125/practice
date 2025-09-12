@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const SetTimeoutPage: React.FC = () => {
-    const [counter, setCounter] = useState(0)
+
 
     return (
         <div>
@@ -9,5 +9,6 @@ const SetTimeoutPage: React.FC = () => {
         </div>
     );
 };
+
 
 export default SetTimeoutPage;

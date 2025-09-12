@@ -8,7 +8,10 @@ const Home: React.FC = () => {
         <div className="max-w-xl mx-auto p-6 space-y-6">
             <nav className="bg-white shadow px-4 py-2 flex space-x-4">
                 <Link to="/" className="text-blue-600 hover:underline">
-                    Link 1
+                    Home
+                </Link>
+                <Link to="/settimeout" className="text-blue-600 hover:underline">
+                    Set Timeout
                 </Link>
             </nav>
             <Hero />
