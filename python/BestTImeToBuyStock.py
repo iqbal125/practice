@@ -23,7 +23,6 @@ def FindProfit(prices_arr):
 
 
 
-
 prices = [4,7,2,5,1,3,6,4]
 # Output: 5
 

@@ -21,13 +21,6 @@ def ValidParen(s):
         return True
 
 
-
-
-
-
-
-
-
 s1 = "[([])]" #true
 s2 = "[(])" #false
 
