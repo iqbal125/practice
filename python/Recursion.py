@@ -1,5 +1,28 @@
 
 
+"""
+Recursion Practice Problems
+
+This file contains various recursion examples and problems:
+
+1. Factorial: Calculate n! = n × (n-1) × (n-2) × ... × 1
+   Example: factorial(5) = 5 × 4 × 3 × 2 × 1 = 120
+
+2. Fibonacci: Calculate the nth Fibonacci number where F(n) = F(n-1) + F(n-2)
+   Example: F(0)=0, F(1)=1, F(2)=1, F(3)=2, F(4)=3, F(5)=5...
+
+Key Concepts:
+- Base case: The condition that stops the recursion
+- Recursive case: The function calling itself with a smaller problem
+- Call stack: How recursive calls are managed in memory
+
+Time Complexity:
+- Factorial: O(n)
+- Fibonacci (naive): O(2^n) - exponential!
+- Fibonacci (with memoization): O(n)
+"""
+
+
 # def countdown(n: int):
 
 #     if(n <= 0):
