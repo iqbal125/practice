@@ -30,10 +30,10 @@ def ValidAnagrams(s, t):
     countS = {}
 
     for i in s:
-        countS[i] = countT.get(i, 0) + 1
+        countS[i] = countS.get(i, 0) + 1
     
     for i in t: 
-        countT[i] = countS.get(i, 0) + 1
+        countT[i] = countT.get(i, 0) + 1
 
     return countS == countT
 
