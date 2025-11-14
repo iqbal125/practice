@@ -1,25 +1,24 @@
 
 
+# init k num of elements from beginning of array
+# find the sum of that and make that the max sum
+# subract the element from the beginning of array using the index and add the next element index
+# compare if more than max sum
+# if yes then set to new max_sum, if not then continue
 
 
-arr1 = [1, 2, 3, 4, 5, 6, 7, 8]
-target = 3
-print(arr1[:3])
+def sub_array(nums, k):
+    max_sum = sum(nums[:k])
+    current_sum = max_sum
 
-print(range(3, len(arr1)))
-
-def sliding_window(arr, target):
-    max_sum = 0
-    window_sum = sum(arr[:target])
-    print(window_sum)
-
-    for i in range(target, len(arr)):
-        # print(i)
-        window_sum += arr[i] - arr[i-target]
-        print(arr[i], arr[i-target], window_sum)
-        max_sum = max(window_sum, max_sum)
-
+    for right in range(k, len(nums)):
+        left = right - k
+        current_sum += nums[right] - nums[left]
+        max_sum = max(current_sum, max_sum)
+    
     return max_sum
 
+k = 3
+nums = [5, 2, 7, 1, 4, 6, 3]
 
-sliding_window(arr1, 3)
+print(sub_array(nums, k))
