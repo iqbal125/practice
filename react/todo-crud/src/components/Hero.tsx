@@ -1,5 +1,4 @@
 
-
 const Hero = () => {
     return (
         <div>
