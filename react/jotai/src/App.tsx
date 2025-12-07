@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-import AsyncCrud from './pages/AsyncCrud';
-import LocalCrud from './pages/LocalCrud';
+import TextLength from './pages/Textlength';
+import TodoPage from './pages/Todos';
 
 const App: React.FC = () => {
   return (
@@ -19,24 +19,24 @@ const App: React.FC = () => {
                   Home
                 </Link>
                 <Link
-                  to="/async"
+                  to="/text"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                 >
-                  Async CRUD
+                  Text
                 </Link>
                 <Link
-                  to="/local"
+                  to="/todos"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                 >
-                  Local CRUD
+                  Todos
                 </Link>
               </nav>
             </header>
             <div className="p-6">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/async" element={<AsyncCrud />} />
-                <Route path="/local" element={<LocalCrud />} />
+                <Route path="/text" element={<TextLength />} />
+                <Route path="/todos" element={<TodoPage />} />
               </Routes>
             </div>
           </div>
