@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import TextLength from './pages/Textlength';
 import TodoPage from './pages/Todos';
+import ReadOnly from './pages/Readonly';
+import WriteOnly from './pages/WriteOnly';
 
 const App: React.FC = () => {
   return (
@@ -30,6 +32,18 @@ const App: React.FC = () => {
                 >
                   Todos
                 </Link>
+                <Link
+                  to="/readonly"
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                >
+                  ReadOnly
+                </Link>
+                <Link
+                  to="/writeonly"
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                >
+                  WriteOnly
+                </Link>
               </nav>
             </header>
             <div className="p-6">
@@ -37,6 +51,8 @@ const App: React.FC = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/text" element={<TextLength />} />
                 <Route path="/todos" element={<TodoPage />} />
+                <Route path="/readonly" element={<ReadOnly />} />
+                <Route path="/writeonly" element={<WriteOnly />} />
               </Routes>
             </div>
           </div>
