@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import TextLength from './pages/Textlength';
 import TodoPage from './pages/Todos';
-import ReadOnly from './pages/Readonly';
-import WriteOnly from './pages/WriteOnly';
+import ReadWriteAtoms from './pages/ReadWriteAtoms';
+import AtomCreator from './pages/AtomCreator';
 
 const App: React.FC = () => {
   return (
@@ -33,16 +33,16 @@ const App: React.FC = () => {
                   Todos
                 </Link>
                 <Link
-                  to="/readonly"
+                  to="/readwrite"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                 >
-                  ReadOnly
+                  Read/Write
                 </Link>
                 <Link
-                  to="/writeonly"
+                  to="/atomcreator"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                 >
-                  WriteOnly
+                  atomcreator
                 </Link>
               </nav>
             </header>
@@ -51,8 +51,8 @@ const App: React.FC = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/text" element={<TextLength />} />
                 <Route path="/todos" element={<TodoPage />} />
-                <Route path="/readonly" element={<ReadOnly />} />
-                <Route path="/writeonly" element={<WriteOnly />} />
+                <Route path="/readwrite" element={<ReadWriteAtoms />} />
+                <Route path="/atomcreator" element={<AtomCreator />} />
               </Routes>
             </div>
           </div>
