@@ -1,0 +1,7 @@
+https://tutorial.jotai.org/quick-start/atom-creators
+
+https://jotai.org/docs/recipes/large-objects
+
+https://jotai.org/docs/recipes/use-atom-effect
+
+https://jotai.org/docs/recipes/custom-useatom-hooks
