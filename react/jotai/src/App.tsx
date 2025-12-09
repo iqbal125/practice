@@ -5,6 +5,8 @@ import TextLength from './pages/Textlength';
 import TodoPage from './pages/Todos';
 import ReadWriteAtoms from './pages/ReadWriteAtoms';
 import AtomCreator from './pages/AtomCreator';
+import TaskApp from './pages/Test2';
+import Test4 from './pages/Test4';
 
 const App: React.FC = () => {
   return (
@@ -44,6 +46,12 @@ const App: React.FC = () => {
                 >
                   atomcreator
                 </Link>
+                <Link
+                  to="/task"
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                >
+                  Task
+                </Link>
               </nav>
             </header>
             <div className="p-6">
@@ -53,6 +61,7 @@ const App: React.FC = () => {
                 <Route path="/todos" element={<TodoPage />} />
                 <Route path="/readwrite" element={<ReadWriteAtoms />} />
                 <Route path="/atomcreator" element={<AtomCreator />} />
+                <Route path="/task" element={<Test4 />} />
               </Routes>
             </div>
           </div>
