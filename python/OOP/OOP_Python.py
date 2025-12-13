@@ -6,6 +6,6 @@ class Car:
         self.model = model 
 
 
-car_1 = Car("lexus")
+car_1 = Car("lexus", "es300")
 
 print(car_1)

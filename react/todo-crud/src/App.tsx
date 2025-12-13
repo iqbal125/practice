@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-import AsyncCrud from './pages/AsyncCrud';
 import LocalCrud from './pages/LocalCrud';
+import NavBar from './pages/Navbar';
 
 const App: React.FC = () => {
   return (
@@ -18,25 +18,26 @@ const App: React.FC = () => {
                 >
                   Home
                 </Link>
-                <Link
-                  to="/async"
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                >
-                  Async CRUD
-                </Link>
+
                 <Link
                   to="/local"
                   className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                 >
                   Local CRUD
                 </Link>
+                <Link
+                  to="/navbar"
+                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                >
+                  NavBar
+                </Link>
               </nav>
             </header>
             <div className="p-6">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/async" element={<AsyncCrud />} />
                 <Route path="/local" element={<LocalCrud />} />
+                <Route path="/navbar" element={<NavBar />} />
               </Routes>
             </div>
           </div>

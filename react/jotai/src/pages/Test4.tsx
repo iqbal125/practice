@@ -74,7 +74,7 @@ const cartTotalAtom = atom((get) => {
     const items = get(cartAtom)
 
     let total = 0
-    items.forEach(item => total += item.price)
+    items.forEach(item => total += item.price * item.quantity)
 
     return total;
 });
@@ -82,8 +82,11 @@ const cartTotalAtom = atom((get) => {
 // TODO: Create derived atom for total items count
 const cartItemsCountAtom = atom((get) => {
     // IMPLEMENT: Calculate total quantity across all items
+    const items = get(cartAtom)
 
-    return 0;
+    let totalQuan = 0
+    items.forEach(item => totalQuan += item.quantity)
+    return totalQuan;
 });
 
 // TODO: Create discount code atom and discount percentage atom
@@ -106,13 +109,30 @@ function ProductCard({ product }: { product: Product }) {
     const [cart, setCart] = useAtom(cartAtom);
 
     const handleAddToCart = () => {
-        // TODO: Implement add to cart logic
-        // - Check if product already in cart
-        // - If yes, increase quantity (if stock allows)
-        // - If no, add new item
-        // - Ensure quantity doesn't exceed stock
-    };
+        const existingItemIndex = cart.findIndex(item => item.productId === product.id);
 
+        if (existingItemIndex !== -1) {
+            // Item exists - check stock before incrementing
+            const currentQuantity = cart[existingItemIndex].quantity;
+            if (currentQuantity >= product.stock) return; // Already at max stock
+
+            // Create new array with updated quantity (immutable)
+            setCart(cart.map((item, index) =>
+                index === existingItemIndex
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
+            ));
+        } else {
+            // New item - add to cart
+            const newItem: CartItem = {
+                productId: product.id,
+                quantity: 1,
+                price: product.price,
+                name: product.name,
+            };
+            setCart(prev => [...prev, newItem]);
+        }
+    };
     const isInCart = false; // TODO: Check if product is in cart
     const cartQuantity = 0; // TODO: Get current quantity in cart
 
@@ -127,6 +147,7 @@ function ProductCard({ product }: { product: Product }) {
             <button
                 className="mt-3 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 disabled:bg-gray-300"
                 disabled={product.stock === 0}
+                onClick={handleAddToCart}
             >
                 {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
             </button>
@@ -141,16 +162,30 @@ function CartItemComponent({ item }: { item: CartItem }) {
     const [cart, setCart] = useAtom(cartAtom);
 
     const handleIncrease = () => {
-        // TODO: Increase quantity (check stock limit)
-    };
+        const product = PRODUCTS.find(product => product.id === item.productId)
+        if (!product) throw "Error"
 
-    const handleDecrease = () => {
-        // TODO: Decrease quantity or remove if quantity = 1
+        if (item.quantity + 1 > product.stock) return "Sold Out"
+        // TODO: Increase quantity (check stock limit)
+        setCart(prev => prev.map(mappedItem => mappedItem.productId === item.productId ? { ...mappedItem, quantity: mappedItem.quantity + 1 } : mappedItem))
     };
 
     const handleRemove = () => {
         // TODO: Remove item from cart
+        let tempArr = [...cart].filter(filterItem => filterItem.productId !== item.productId)
+        setCart(tempArr)
     };
+
+
+    const handleDecrease = () => {
+        if (item.quantity === 1) {
+            handleRemove()
+            return
+        }
+        setCart(prev => prev.map(mappedItem => mappedItem.productId === item.productId ? { ...mappedItem, quantity: mappedItem.quantity - 1 } : mappedItem))
+    };
+
+
 
     return (
         <div className="flex items-center justify-between border-b py-3">
@@ -161,10 +196,10 @@ function CartItemComponent({ item }: { item: CartItem }) {
 
             {/* TODO: Implement quantity controls */}
             <div className="flex items-center gap-3">
-                <button className="px-2 py-1 bg-gray-200 rounded">-</button>
-                <span className="font-semibold">{item.quantity}</span>
-                <button className="px-2 py-1 bg-gray-200 rounded">+</button>
-                <button className="ml-3 text-red-500 hover:text-red-700">Remove</button>
+                <button className="px-2 py-1 bg-gray-200 rounded" onClick={handleDecrease}>-</button>
+                <span className="font-semibold" >{item.quantity}</span>
+                <button className="px-2 py-1 bg-gray-200 rounded" onClick={handleIncrease}>+</button>
+                <button className="ml-3 text-red-500 hover:text-red-700" onClick={handleRemove}>Remove</button>
             </div>
 
             <div className="ml-4 font-semibold">
@@ -199,6 +234,9 @@ function Cart() {
                     {/* TODO: Render cart items */}
                     <div className="space-y-2">
                         {/* Map through cart items here */}
+                        {cart.map(item => {
+                            return (<CartItemComponent item={item} />)
+                        })}
                     </div>
 
                     {/* TODO: Implement discount code input */}
